@@ -2,6 +2,6 @@
 
 public enum IncidentType
 {
-    Type1 = 1,
-    Type2 = 2
+    Type1,
+    Type2
 }

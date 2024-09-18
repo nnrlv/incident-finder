@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\..\IncidentFinder.Services\IncidentFinder.Services.EventGenerator\IncidentFinder.Services.EventGenerator.csproj" />
   </ItemGroup>
 
 </Project>
