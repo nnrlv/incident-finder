@@ -10,7 +10,7 @@
    }
    ```
    
-2. C помощью Project Manager  написать инструкцию в `IncidentFinder.Data.Context`:
+2. C помощью Package Manager Console написать инструкцию в `IncidentFinder.EventProcessor`:
 
    ```plaintext
    update-database
