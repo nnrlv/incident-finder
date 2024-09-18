@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -61,11 +62,11 @@ public class EventGeneratorService : BackgroundService
     private async Task SendEventToProcessor(Event generatedEvent)
     {
         var client = _httpClientFactory.CreateClient();
-        //var response = await client.PostAsJsonAsync("https://localhost:8080/api/events", newEvent);
+        var response = await client.PostAsJsonAsync("http://localhost:8080/api/Incident", generatedEvent);
 
-        //if (!response.IsSuccessStatusCode)
-        //{
-        //    _logger.LogError($"Ошибка при отправке события {response.StatusCode}");
-        //}
+        if (!response.IsSuccessStatusCode)
+        {
+            _logger.LogError($"Ошибка при отправке события {response.StatusCode}");
+        }
     }
 }

@@ -21,11 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\IncidentFinder.Data\IncidentFinder.Data.Context\IncidentFinder.Data.Context.csproj" />
+    <ProjectReference Include="..\..\IncidentFinder.Services\IncidentFinder.Services.EventProcessor\IncidentFinder.Services.EventProcessor.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 using IncidentFinder.Data.Context;
+using IncidentFinder.Services.EventProcessor;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     services.AddEndpointsApiExplorer();
     ConfigureSwagger(services);
     ConfigureDatabase(services, configuration);
+    services.AddHostedService<EventProcessorService>();
+    services.AddScoped<EventProcessorService>();
 }
 
 void ConfigureSwagger(IServiceCollection services)
@@ -27,7 +30,7 @@ void ConfigureSwagger(IServiceCollection services)
 void ConfigureDatabase(IServiceCollection services, IConfiguration configuration)
 {
     var connectionString = configuration.GetConnectionString("DefaultConnection");
-    services.AddDbContext<Context>(options => options.UseNpgsql(connectionString));
+    services.AddDbContextFactory<Context>(options => options.UseNpgsql(connectionString));
 }
 
 void ConfigureMiddleware(WebApplication app)
