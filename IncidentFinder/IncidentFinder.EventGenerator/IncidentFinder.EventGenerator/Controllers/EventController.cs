@@ -9,7 +9,7 @@ using IncidentFinder.Data.Entities;
 public class EventController : ControllerBase
 {
     private readonly ILogger<EventController> _logger;
-    private readonly EventGeneratorService? _eventGeneratorService;
+    private readonly EventGeneratorService _eventGeneratorService;
 
     public EventController(ILogger<EventController> logger, EventGeneratorService eventGeneratorService)
     {
@@ -39,6 +39,11 @@ public class EventController : ControllerBase
         {
             await _eventGeneratorService.ExecuteAsyncByYourself(eventType);
             return Ok("Событие успешно сгенерировано.");
+        }
+        catch (ArgumentException ex)
+        {
+            _logger.LogError(ex, "Ошибка при генерации события. Передан невалидный тип события.");
+            return StatusCode(500, "Произошла ошибка при генерации события. Передан невалидный тип события.");
         }
         catch (Exception ex)
         {
